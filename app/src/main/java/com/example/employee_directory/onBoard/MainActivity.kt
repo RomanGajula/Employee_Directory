@@ -1,4 +1,4 @@
-package com.example.employee_directory
+package com.example.employee_directory.onBoard
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,18 +8,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
+import com.example.employee_directory.R
 import com.example.employee_directory.adapters.SliderAdapter
 import com.example.employee_directory.databinding.ActivityMainBinding
-import com.example.employee_directory.viewmodel.HomeViewModel
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Response
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import java.io.IOException
+import com.example.employee_directory.view.Home
 
 class MainActivity : AppCompatActivity() {
     var currentPage: Int = 0
@@ -30,7 +23,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
+            DataBindingUtil.setContentView(this,
+                R.layout.activity_main
+            )
 
         binding.slideViewPage.adapter = sliderAdapter
         binding.slideViewPage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

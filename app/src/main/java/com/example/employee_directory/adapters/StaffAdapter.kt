@@ -29,7 +29,7 @@ class StaffAdapter() : RecyclerView.Adapter<StaffAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val staffName = dataList.staff[position]
-        holder.binding.nameUser.text = staffName.employeeName
+//        holder.binding.nameUser.text = staffName.employeeName
 
 //        val userName = holder.binding.nameUser
 //        val userAge = holder.binding.age

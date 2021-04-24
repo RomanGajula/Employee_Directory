@@ -1,37 +1,24 @@
-package com.example.employee_directory
+package com.example.employee_directory.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
-import com.androidnetworking.AndroidNetworking
-import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.ParsedRequestListener
-import com.example.employee_directory.adapters.StaffAdapter
+import com.example.employee_directory.R
+import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityHomeBinding
-import com.example.employee_directory.databinding.ActivityMainBinding
-import com.example.employee_directory.db.DataList
 import com.example.employee_directory.model.Data
-import com.example.employee_directory.model.Request
 import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.HomeViewModel
 import com.example.employee_directory.viewmodel.MainViewModelFactory
-import com.google.gson.GsonBuilder
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Response
 import org.koin.core.KoinComponent
-import org.koin.core.inject
-import java.io.IOException
-import kotlin.reflect.KProperty
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class Home : AppCompatActivity(), KoinComponent {
     // ДОБАВИТЬ INJECT
@@ -45,13 +32,28 @@ class Home : AppCompatActivity(), KoinComponent {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val binding: ActivityHomeBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_home)
+            DataBindingUtil.setContentView(this,
+                R.layout.activity_home
+            )
 
-        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
-        homeViewModel.getData()
-        homeViewModel.getResponse.observe(this, Observer { response ->
-            println("----------------->>>" + response.body())
+//        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+//        homeViewModel.getData()
+//        homeViewModel.getResponse.observe(this, Observer { response ->
+//            println("----------------->>>" + response.isCanceled)
+//        }
+
+        val callList: Call<List<Data>> = RetrofitInstance.api.getData()
+
+        callList.enqueue(object : Callback<List<Data>> {
+            override fun onFailure(call: Call<List<Data>>, t: Throwable) {
+                println("eeeeeeeeeeeeeeeee----------->>>" + t)
+            }
+
+            override fun onResponse(call: Call<List<Data>>, response: Response<List<Data>>) {
+                println("---------------------->>>>>>" + response.body())
+            }
         })
+
 
 //        binding.apply {
 //            recyclerView.layoutManager = LinearLayoutManager(this@Home)
@@ -79,9 +81,14 @@ class Home : AppCompatActivity(), KoinComponent {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.update -> Toast.makeText(this, "Select Update", Toast.LENGTH_SHORT).show()
-            R.id.add -> Toast.makeText(this, "Select Update", Toast.LENGTH_SHORT).show()
+            R.id.add -> clickAddEmployee()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun clickAddEmployee() {
+        val intent = Intent(this, AddEmployee::class.java)
+        startActivity(intent)
     }
 
 //    fun fetchJson() {

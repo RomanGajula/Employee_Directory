@@ -31,7 +31,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="35dp"
                 android:fontFamily="sans-serif"
-                android:text="@{modelStaff.employeeAge}"
+                android:text=""
                 android:textColor="#918F8F"
                 android:textSize="12sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="35dp"
                 android:fontFamily="sans-serif"
-                android:text="@{modelStaff.employeeSalary}"
+                android:text=""
                 android:textColor="#918F8F"
                 android:textSize="12sp" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="-140dp"
                 android:layout_marginTop="15dp"
-                android:text="@{modelStaff.employeeName}"
+                android:text=""
                 android:textColor="#434242"
                 android:textSize="24sp" />
         </LinearLayout>

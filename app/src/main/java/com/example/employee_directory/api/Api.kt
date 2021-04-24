@@ -1,6 +1,7 @@
 package com.example.employee_directory.api
 
 import com.example.employee_directory.model.Data
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.FormUrlEncoded
@@ -14,6 +15,8 @@ interface Api {
         @Body data: Data
     ): Response<Data>
 
-    @GET("/api/v1/employees")
-    suspend fun getData(): Response<Data>
+    @GET("messages1.json")
+    fun getData(): Call<List<Data>>
+
+//    /api/v1/employees
 }
