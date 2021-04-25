@@ -25,9 +25,10 @@ object RetrofitInstance {
         .setLenient()
         .create()
 
+
     var retrofit = Retrofit.Builder()
-        .baseUrl("https://rawgit.com/startandroid/data/master/messages/")
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     var api: Api = retrofit.create(Api::class.java)

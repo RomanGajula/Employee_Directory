@@ -27,10 +27,10 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
         setContentView(R.layout.activity_add_employee)
 
         binding =
-            DataBindingUtil.setContentView(
-                this,
-                R.layout.activity_add_employee
-            )
+                DataBindingUtil.setContentView(
+                        this,
+                        R.layout.activity_add_employee
+                )
         binding.apply {
             lifecycleOwner = this@AddEmployee
         }
@@ -44,75 +44,20 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
             }
             false
         })
-
-
-//        binding.addName.addTextChangedListener(object: TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                if (binding.addName.text.toString() == "") {
-//                    binding.addName.error =
-//                        "Enter the name of the staff!"
-//                } else {
-//                    binding.addName.error = null
-//                }
-//            }
-//
-//        })
     }
 
     fun clickCreateEmployee(view: View) {
-
-        if (validate()) {
+        if (binding.addName.text.isEmpty()) {
+            binding.addName.error = "Enter the name of the staff"
+        } else if (binding.addAge.text.isEmpty()) {
+            binding.addAge.error = "Enter the employee's age"
+        } else if (binding.addAge.text.length > 3) {
+            binding.addAge.error = "Enter your real age"
+        } else if (binding.addSalary.text.isEmpty()) {
+            binding.addSalary.error = "Enter the employee's salary"
+        } else {
             val intent = Intent(this@AddEmployee, Home::class.java)
             startActivity(intent)
-        } else {
-            if (binding.addName.text.isEmpty()) {
-                binding.addName.error = "Enter the name of the staff"
-            } else if (binding.addAge.text.isEmpty() || binding.addName.text.length > 3) {
-                binding.addAge.error = "Enter the employee's age"
-            } else if (binding.addSalary.text.isEmpty()) {
-                binding.addSalary.error = "Enter the employee's salary"
-            }
         }
-
-//        if (binding.addName.text.toString() == "" ||
-//            binding.addAge.text.toString() == "" || binding.addSalary.text.toString() == ""
-//        ) {
-//            Toast.makeText(
-//                applicationContext,
-//                "Please fill in all the fields!",
-//                Toast.LENGTH_LONG
-//            ).show()
-////            if (binding.addName.text.isNotEmpty() && binding.addAge.text.toString() == "") {
-////                binding.addName.error = "Enter the employee's age!"
-////            }
-//            when ("") {
-//                binding.addName.text.toString() -> binding.addName.error =
-//                    "Enter the name of the staff!"
-//                binding.addAge.text.toString() -> binding.addName.error =
-//                    "Enter the employee's age!"
-//                binding.addSalary.text.toString() -> binding.addName.error =
-//                    "Enter the employee's salary!"
-//            }
-//        } else {
-//            val intent = Intent(this@AddEmployee, Home::class.java)
-//            startActivity(intent)
-//        }
-    }
-
-    fun validate(): Boolean {
-        if (binding.addName.text.isEmpty()) {
-            return false
-        } else if (binding.addAge.text.isEmpty()) {
-            return false
-        } else if (binding.addSalary.text.isEmpty()) {
-            return false
-        }
-        return true
     }
 }

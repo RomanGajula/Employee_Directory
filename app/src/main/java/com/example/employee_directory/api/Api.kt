@@ -15,7 +15,7 @@ interface Api {
         @Body data: Data
     ): Response<Data>
 
-    @GET("messages1.json")
+    @GET("employees")
     fun getData(): Call<List<Data>>
 
 //    /api/v1/employees

@@ -10,14 +10,19 @@ import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
 import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityHomeBinding
+import com.example.employee_directory.db.DataList
 import com.example.employee_directory.model.Data
 import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.HomeViewModel
 import com.example.employee_directory.viewmodel.MainViewModelFactory
+import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.koin.core.KoinComponent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 
 
 class Home : AppCompatActivity(), KoinComponent {
@@ -35,12 +40,6 @@ class Home : AppCompatActivity(), KoinComponent {
             DataBindingUtil.setContentView(this,
                 R.layout.activity_home
             )
-
-//        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
-//        homeViewModel.getData()
-//        homeViewModel.getResponse.observe(this, Observer { response ->
-//            println("----------------->>>" + response.isCanceled)
-//        }
 
         val callList: Call<List<Data>> = RetrofitInstance.api.getData()
 
@@ -60,17 +59,6 @@ class Home : AppCompatActivity(), KoinComponent {
 //            recyclerView.setHasFixedSize(true)
 //            recyclerView.adapter = homeViewModel.adapter
 //        }
-
-//        AndroidNetworking.initialize(this)
-//        AndroidNetworking.get("http://dummy.restapiexample.com/api/v1/employees").build().getAsObject(Request::class.java, object : ParsedRequestListener<Request> {
-//            override fun onResponse(response: Request?) {
-//                dataList.addAll(response!!.data)
-//                homeViewModel.adapter.notifyDataSetChanged()
-//            }
-//
-//            override fun onError(anError: ANError?) {}
-//
-//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -94,20 +82,33 @@ class Home : AppCompatActivity(), KoinComponent {
 //    fun fetchJson() {
 //        val url = "http://dummy.restapiexample.com/api/v1/employees"
 //
-//        val request = okhttp3.Request.Builder().url(url).build()
+//        val request = Request.Builder().url(url).build()
 //        val client = OkHttpClient()
-//        client.newCall(request).enqueue(object : Callback {
-//            override fun onResponse(call: Call, response: Response) {
-//                val body = response.body?.string()
-//                println(body)
+//        client.newCall(request).enqueue(object : Callback<Data>, okhttp3.Callback {
+//            override fun onFailure(call: okhttp3.Call, e: IOException) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+//                val body = response.body?.toString()
+//                println("1.-----------------" + body)
 //
 //                val gson = GsonBuilder().create()
 //                val data = gson.fromJson(body, DataList::class.java)
-//                StaffAdapter().dataList = data
 //            }
-//            override fun onFailure(call: Call, e: IOException) {
-//                println("nooooooooooooooooooooooo")
+//
+//            override fun onFailure(call: Call<Data>, t: Throwable) {
+//                println("--------->>>>" + t)
 //            }
+//
+//            override fun onResponse(call: Call<Data>, response: Response<Data>) {
+//                val body = response.body()?.toString()
+//                println("2.-----------------" + body)
+//
+//                val gson = GsonBuilder().create()
+//                val data = gson.fromJson(body, DataList::class.java)
+//            }
+//
 //        })
 //    }
 }
