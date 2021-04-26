@@ -22,6 +22,10 @@ android {
         dataBinding true
     }
 
+    repositories {
+        mavenCentral()
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -137,6 +141,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    compile 'com.github.paolorotolo:appintro:3.3.0'
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
 }

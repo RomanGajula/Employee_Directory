@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 if (position == 0) {
                     binding.arrowPrev.isEnabled = false
                     binding.arrowPrev.visibility = View.INVISIBLE
+
                 }
                 else if (position >= 0) {
                     binding.arrowPrev.isEnabled = true
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     binding.arrowNext.isEnabled = true
                     binding.arrowNext.visibility = View.VISIBLE
                 }
-                if (position == (SliderAdapter(this@MainActivity).slide_heading.size - 1)) {
+                if (position == (SliderAdapter(this@MainActivity).repository.slide_heading.size - 1)) {
                     binding.arrowNext.isEnabled = false
                     binding.arrowNext.visibility = View.INVISIBLE
                     binding.buttonStart.visibility = View.VISIBLE
@@ -64,21 +65,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+
     fun clickStart(view: View) {
         val intent = Intent(this@MainActivity, Home::class.java)
         startActivity(intent)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.app_bar, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.update -> Toast.makeText(this, "Select Update", Toast.LENGTH_SHORT).show()
-            R.id.add -> Toast.makeText(this, "Select Update", Toast.LENGTH_SHORT).show()
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

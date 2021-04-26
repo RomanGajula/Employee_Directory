@@ -6,16 +6,16 @@
 
     <data>
 
-        <variable
-            name="addViewModel"
-            type="com.example.employee_directory.viewmodel.AddEmployeeViewModel" />
+<!--        <variable-->
+<!--            name="addViewModel"-->
+<!--            type="com.example.employee_directory.viewmodel.AddEmployeeViewModel" />-->
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.AddEmployee">
+        tools:context=".view.UpdateEmployee">
 
         <TextView
             android:id="@+id/titleAddEmployee"
@@ -24,7 +24,7 @@
             android:layout_marginTop="59dp"
             android:layout_marginBottom="43dp"
             android:gravity="center"
-            android:text="Add Employee"
+            android:text="Update Employee"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
             android:layout_marginTop="70dp"
             android:layout_marginEnd="54dp"
             android:ems="10"
-            android:hint="Add name"
+            android:hint="Update name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
             android:layout_marginStart="54dp"
             android:layout_marginEnd="54dp"
             android:ems="10"
-            android:hint="Add age"
+            android:hint="Update age"
             android:inputType="number|textPersonName"
             app:layout_constraintBottom_toTopOf="@+id/addSalary"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
             android:layout_marginEnd="54dp"
             android:layout_marginBottom="30dp"
             android:ems="10"
-            android:hint="Add salary"
+            android:hint="Update salary"
             android:inputType="number|textPersonName"
             app:layout_constraintBottom_toTopOf="@+id/buttonCreate"
             app:layout_constraintEnd_toEndOf="parent"

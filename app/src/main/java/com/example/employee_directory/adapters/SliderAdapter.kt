@@ -10,27 +10,12 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.example.employee_directory.R
+import com.example.employee_directory.repository.Repository
 
 ////ПЕРЕКИНУТЬ ИНФОРМАЦИЮ В РЕПОЗИТОРИЙ
 class SliderAdapter(var context: Context) : PagerAdapter() {
     lateinit var layoutInflater: LayoutInflater
-
-    var slide_description: Array<String> = arrayOf(
-        "List представляет последовательный список элементов. List представляет неизменяемую (immutable) " +
-                "коллекцию, которая в основном только обеспечивает получение элементов по позиции.",
-        "Изменяемые списки представлены интерфейсом MutableList. Он расширяет интерфейс List и позволяют " +
-                "добавлять и удалять элементы. Данный интерфейс реализуется классом ArrayList.",
-        "Уже не первый год компании решают проблему под название «показатель оттока клиентов» или «Churn " +
-                "Rate». За это время было протестировано огромное кол-во разных комбинаций «вводить в курс дела» пользователей. "
-    )
-
-    var slide_icon = listOf(
-        R.drawable.ic_launcher_background,
-        R.drawable.ic_launcher_foreground,
-        R.drawable.onboarding_pager_circle_icon
-    )
-
-    val slide_heading: Array<String> = arrayOf("One slide", "Two slide", "Free slide")
+    var repository = Repository()
 
 
     override fun isViewFromObject(view: View, ob: Any): Boolean {
@@ -45,9 +30,9 @@ class SliderAdapter(var context: Context) : PagerAdapter() {
         val slideHeading: TextView = view.findViewById(R.id.slideHeading)
         val slideDescription: TextView = view.findViewById(R.id.slideDescription)
 
-        slideIcon.setImageResource(slide_icon[position])
-        slideHeading.text = slide_heading[position]
-        slideDescription.text = slide_description[position]
+        slideIcon.setImageResource(repository.slide_icon[position])
+        slideHeading.text = repository.slide_heading[position]
+        slideDescription.text = repository.slide_description[position]
 
 
 
@@ -61,6 +46,6 @@ class SliderAdapter(var context: Context) : PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        return slide_heading.count()
+        return repository.slide_heading.count()
     }
 }

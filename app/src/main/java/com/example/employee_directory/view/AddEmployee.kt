@@ -13,6 +13,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
 import com.example.employee_directory.databinding.ActivityAddEmployeeBinding
+import com.example.employee_directory.dialog.CancelDialog
 import com.example.employee_directory.viewmodel.AddEmployeeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.KoinComponent
@@ -46,6 +47,10 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
         })
     }
 
+    fun clickCancel(view: View) {
+        CancelDialog().show(supportFragmentManager, "Cancel")
+    }
+
     fun clickCreateEmployee(view: View) {
         if (binding.addName.text.isEmpty()) {
             binding.addName.error = "Enter the name of the staff"
@@ -60,4 +65,5 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
             startActivity(intent)
         }
     }
+
 }

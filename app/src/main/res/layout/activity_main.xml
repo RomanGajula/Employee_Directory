@@ -8,11 +8,11 @@
 <!--        <variable-->
 <!--            name="addViewModel"-->
 <!--            type="com.example.hotels.hotel.viewModel.AddHotelViewModel" />-->
-
     </data>
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="@color/design_default_color_primary_dark"
     tools:context=".onBoard.MainActivity">
 
     <ImageView

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Employee_Directory">
-        <activity android:name=".view.AddEmployee"></activity>
+        <activity android:name=".view.UpdateEmployee"></activity>
+        <activity android:name=".view.AddEmployee" />
         <activity android:name=".view.Home">
             <intent-filter>
                 <action android:name="com.example.employee_directory.Home" />
