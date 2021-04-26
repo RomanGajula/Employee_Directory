@@ -6,6 +6,6 @@ import com.example.employee_directory.repository.Repository
 
 class MainViewModelFactory(private val repository: Repository): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel(repository) as T
+        return MainActivityViewModel(repository) as T
     }
 }

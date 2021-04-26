@@ -3,6 +3,7 @@ package com.example.employee_directory.onBoard
 import android.content.Intent
 import android.os.Bundle
 import com.example.employee_directory.R
+import com.example.employee_directory.view.MainActivity
 import com.github.paolorotolo.appintro.AppIntro2
 
 

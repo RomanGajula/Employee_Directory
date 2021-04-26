@@ -61,7 +61,7 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
         } else if (binding.addSalary.text.isEmpty()) {
             binding.addSalary.error = "Enter the employee's salary"
         } else {
-            val intent = Intent(this@AddEmployee, Home::class.java)
+            val intent = Intent(this@AddEmployee, MainActivity::class.java)
             startActivity(intent)
         }
     }

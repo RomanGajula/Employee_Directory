@@ -1,88 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-<!--        <variable-->
-<!--            name="addViewModel"-->
-<!--            type="com.example.hotels.hotel.viewModel.AddHotelViewModel" />-->
     </data>
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:background="@color/design_default_color_primary_dark"
-    tools:context=".onBoard.MainActivity">
 
-    <ImageView
-        android:id="@+id/arrowNext"
-        android:layout_width="62dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="330dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="4dp"
-        android:paddingLeft="50px"
-        android:rotation="180"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/slideViewPage"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="675dp">
+        android:layout_height="match_parent"
+        tools:context=".hotel.view.M">
 
-    </androidx.viewpager.widget.ViewPager>
+        <TextView
+            android:id="@+id/staffTitle"
+            android:layout_width="232dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="90dp"
+            android:gravity="center"
+            android:text="@string/staff"
+            android:textColor="#515151"
+            android:textSize="37sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="29dp" />
 
-    <LinearLayout
-        android:id="@+id/dotslayaut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="186dp"
-        android:layout_marginLeft="186dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="520dp"
+            android:layout_marginTop="85dp">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                app:layoutManager="LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@+id/hotelTitle"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/arrowPrev"
-        android:layout_width="62dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
-        android:paddingLeft="50px"
-        android:visibility="invisible"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="1dp"
-        android:onClick="clickStart"
-        android:layout_weight="1"
-        android:text="Start"
-        android:visibility="invisible" />
-
-</RelativeLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
