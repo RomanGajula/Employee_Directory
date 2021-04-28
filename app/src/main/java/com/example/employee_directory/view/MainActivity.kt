@@ -17,6 +17,8 @@ import com.example.employee_directory.onBoard.CustomIntro
 import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.utils.Constants.Companion.BASE_URL
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -41,27 +43,39 @@ class MainActivity : AppCompatActivity() {
                 R.layout.activity_main
             )
 
-//        val callList: Call<List<Employee>> = RetrofitInstance.api.getData()
-//
-//        callList.enqueue(object : Callback<List<Employee>> {
-//            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
-//                println("eeeeeeeeeeeeeeeee----------->>>" + t)
-//            }
-//
-//            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
-////                println("---------------------->>>>>>" + response.body())
-//            }
-//        })
-        val api = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(Api::class.java)
+        val callList: Call<List<Employee>> = RetrofitInstance.api.getEmployee()
 
-        GlobalScope.launch(Dispatchers.IO) {
-            var response = api.getData().awaitResponse()
-            println("---------------------->>>>>>" + response.body())
-        }
+        callList.enqueue(object : Callback<List<Employee>> {
+            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
+                println("eeeeeeeeeeeeeeeee----------->>>" + t)
+            }
+
+            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
+                println("---------------------->>>>>>" + response.body())
+            }
+        })
+
+
+
+
+//        val api = Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//                .create(Api::class.java)
+//
+//        GlobalScope.launch(Dispatchers.IO) {
+//            val response = api.getData().awaitResponse()
+////            println("---------------------->>>>>>" + response.body())
+//            val gson = GsonBuilder().setPrettyPrinting().create()
+//            val prettyJson = gson.toJson(
+//                    JsonParser.parseString(
+//                            response.body()
+//                                    ?.toString() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+//                    )
+//            )
+//            println("---------------------->>>>>>" + prettyJson)
+//        }
 
         val thread = Thread(Runnable {
             run {
