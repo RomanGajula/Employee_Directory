@@ -42,19 +42,25 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
     }
 
     fun clickCreateEmployee(view: View) {
-        if (binding.addName.text.isEmpty()) {
-            binding.addName.error = "Enter the name of the staff"
-        } else if (binding.addAge.text.isEmpty()) {
-            binding.addAge.error = "Enter the employee's age"
-        } else if (binding.addAge.text.length > 3) {
-            binding.addAge.error = "Enter your real age"
-        } else if (binding.addSalary.text.isEmpty()) {
-            binding.addSalary.error = "Enter the employee's salary"
-        } else {
-            val intent = Intent(this@AddEmployee, MainActivity::class.java)
-            startActivity(intent)
+        when {
+            binding.addName.text.isEmpty() -> {
+                binding.addName.error = "Enter the name of the staff"
+            }
+            binding.addAge.text.isEmpty() -> {
+                binding.addAge.error = "Enter the employee's age"
+            }
+            binding.addAge.text.length > 3 -> {
+                binding.addAge.error = "Enter your real age"
+            }
+            binding.addSalary.text.isEmpty() -> {
+                binding.addSalary.error = "Enter the employee's salary"
+            }
+            else -> {
+                addEmployeeViewModel.clickCreateEmployee()
+                val intent = Intent(this@AddEmployee, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
-        addEmployeeViewModel.clickCreateEmployee()
     }
 
 }

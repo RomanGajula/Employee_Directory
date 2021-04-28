@@ -18,16 +18,16 @@ class AddEmployeeViewModel : ViewModel(), KoinComponent {
     val salary = MutableLiveData("")
 
     fun clickCreateEmployee() {
-        repository.addEmployee(
-                Employee(
-                        null,
-                        name.value.toString(),
-                        salary.value.toString(),
-                        age.value.toString(),
-                        null
-                )
-        )
-        Log.d("Message: ", name.value.toString())
-
+//        viewModelScope.launch(Dispatchers.IO) {
+            repository.addEmployee(
+                    Employee(
+                            null,
+                            name.value.toString(),
+                            salary.value.toString(),
+                            age.value.toString(),
+                            null
+                    )
+            )
+//        }
     }
 }

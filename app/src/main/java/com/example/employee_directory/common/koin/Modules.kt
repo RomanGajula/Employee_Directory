@@ -10,5 +10,6 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel { AddEmployeeViewModel() }
     viewModel { MainActivityViewModel(Repository()) }
+    single { Repository() }
     single { get<DataBase>().dao }
 }
