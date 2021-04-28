@@ -8,7 +8,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.employee_directory.R
+import com.example.employee_directory.adapters.EmployeeAdapter
 import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityMainBinding
 import com.example.employee_directory.model.RequestData
@@ -21,6 +23,7 @@ import retrofit2.*
 class MainActivity : AppCompatActivity() {
     var currentPage: Int = 0
     val repository = Repository()
+    val employeeAdapter by lazy { EmployeeAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +35,21 @@ class MainActivity : AppCompatActivity() {
                 R.layout.activity_main
             )
 
+        binding.apply {
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+            recyclerView.adapter = employeeAdapter
+        }
+
         val callList: Call<RequestData> = RetrofitInstance.api.gettttEmployee()
-//
         callList.enqueue(object : Callback<RequestData> {
             override fun onFailure(call: Call<RequestData>, t: Throwable) {
-                println("eeeeeeeeeeeeeeeee----------->>>" + t)
+                println(t)
             }
 
             override fun onResponse(call: Call<RequestData>, response: Response<RequestData>) {
                 val employee = response.body()?.data
+                employee?.let { employeeAdapter.setData(it) }
             }
         })
 

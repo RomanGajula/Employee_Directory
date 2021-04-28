@@ -7,16 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitInstance {
-
-//    private val retrofit by lazy {
-//        Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//    }
-
-//    https://rawgit.com/startandroid/data/master/messages/
-
     var gson = GsonBuilder()
         .setLenient()
         .create()

@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.employee_directory.databinding.ItemStaffBinding
 import com.example.employee_directory.db.DataList
+import com.example.employee_directory.model.Employee
 
-class StaffAdapter() : RecyclerView.Adapter<StaffAdapter.MyViewHolder>() {
+class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>() {
 
 //    private lateinit var dataList: MutableList<Data>
-    lateinit var dataList: DataList
+    var employeeList = emptyList<Employee>()
     private lateinit var context: Context
 
     inner class MyViewHolder(val binding: ItemStaffBinding) :
@@ -23,18 +24,19 @@ class StaffAdapter() : RecyclerView.Adapter<StaffAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        val staffName = dataList.staff[position]
-//        holder.binding.nameUser.text = staffName.employeeName
-
-//        val userName = holder.binding.nameUser
-//        val userAge = holder.binding.age
-//        val userSalary = holder.binding.salary
-//        val fullName = "${data.employeeName}"
-//        userName.text = fullName
+        val employeeName = employeeList[position]
+        holder.binding.nameUser.text = employeeName.employeeName
+        holder.binding.age.text = employeeName.employeeAge
+        holder.binding.salary.text = employeeName.employeeSalary
     }
 
     override fun getItemCount(): Int {
-        return dataList.staff.size
+        return employeeList.size
     }
+
+    fun setData(employeeList: List<Employee>) {
+        this.employeeList = employeeList
+        notifyDataSetChanged()
+    }
+
 }
