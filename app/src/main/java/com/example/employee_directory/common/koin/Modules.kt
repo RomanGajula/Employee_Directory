@@ -1,6 +1,6 @@
-package com.example.employee_directory.koin
+package com.example.employee_directory.common.koin
 
-import com.example.employee_directory.db.DataBase
+import com.example.employee_directory.common.DataBase
 import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.AddEmployeeViewModel
 import com.example.employee_directory.viewmodel.MainActivityViewModel

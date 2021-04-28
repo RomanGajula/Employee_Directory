@@ -1,4 +1,4 @@
-package com.example.employee_directory.db
+package com.example.employee_directory.db.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

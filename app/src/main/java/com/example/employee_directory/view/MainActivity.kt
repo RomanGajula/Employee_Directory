@@ -9,23 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
-import com.example.employee_directory.api.Api
 import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityMainBinding
-import com.example.employee_directory.model.Employee
+import com.example.employee_directory.model.RequestData
 import com.example.employee_directory.onBoard.CustomIntro
 import com.example.employee_directory.repository.Repository
-import com.example.employee_directory.utils.Constants.Companion.BASE_URL
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.reflect.Type
 
 
 @Suppress("DEPRECATION")
@@ -43,39 +32,17 @@ class MainActivity : AppCompatActivity() {
                 R.layout.activity_main
             )
 
-        val callList: Call<List<Employee>> = RetrofitInstance.api.getEmployee()
-
-        callList.enqueue(object : Callback<List<Employee>> {
-            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
+        val callList: Call<RequestData> = RetrofitInstance.api.gettttEmployee()
+//
+        callList.enqueue(object : Callback<RequestData> {
+            override fun onFailure(call: Call<RequestData>, t: Throwable) {
                 println("eeeeeeeeeeeeeeeee----------->>>" + t)
             }
 
-            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
-                println("---------------------->>>>>>" + response.body())
+            override fun onResponse(call: Call<RequestData>, response: Response<RequestData>) {
+                val employee = response.body()?.data
             }
         })
-
-
-
-
-//        val api = Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//                .create(Api::class.java)
-//
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val response = api.getData().awaitResponse()
-////            println("---------------------->>>>>>" + response.body())
-//            val gson = GsonBuilder().setPrettyPrinting().create()
-//            val prettyJson = gson.toJson(
-//                    JsonParser.parseString(
-//                            response.body()
-//                                    ?.toString() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
-//                    )
-//            )
-//            println("---------------------->>>>>>" + prettyJson)
-//        }
 
         val thread = Thread(Runnable {
             run {

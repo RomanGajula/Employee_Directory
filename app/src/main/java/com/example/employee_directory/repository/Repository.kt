@@ -1,7 +1,7 @@
 package com.example.employee_directory.repository
 
 import com.example.employee_directory.api.RetrofitInstance
-import com.example.employee_directory.db.DaoEmployee
+import com.example.employee_directory.db.room.DaoEmployee
 import com.example.employee_directory.model.Employee
 import org.koin.core.KoinComponent
 import org.koin.core.inject
