@@ -12,8 +12,8 @@ class Repository : KoinComponent {
 
     private val dao: DaoEmployee by inject()
 
-    suspend fun pushPost(employee: Employee) : Response<Employee> {
-        return RetrofitInstance.api.pushPost(employee)
+    fun addEmployee(employee: Employee) : Call<Employee> {
+        return RetrofitInstance.api.addEmployee(employee)
     }
 
     fun getData(): Call<Employee> {

@@ -10,19 +10,16 @@ import retrofit2.http.*
 interface Api {
     @FormUrlEncoded
     @POST("posts")
-    suspend fun pushPost(
+    fun addEmployee(
             @Body employee: Employee
-    ): Response<Employee>
+    ): Call<Employee>
 
     @Headers("Accept: application/json")
     @GET("employees")
     fun getData(): Call<Employee>
 
     @GET("employees")
-    fun getEmployee(): Call<List<Employee>>
-
-    @GET("employees")
-    fun gettttEmployee(): Call<RequestData>
+    fun getEmployee(): Call<RequestData>
 
 //    /api/v1/employees
 }

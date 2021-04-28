@@ -35,16 +35,6 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
         binding.apply {
             lifecycleOwner = this@AddEmployee
         }
-
-
-        binding.addAge.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_BUTTON_13) {
-                //Perform Code
-                println("22222222222222")
-                return@OnKeyListener true
-            }
-            false
-        })
     }
 
     fun clickCancel(view: View) {
@@ -64,6 +54,7 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
             val intent = Intent(this@AddEmployee, MainActivity::class.java)
             startActivity(intent)
         }
+        addEmployeeViewModel.clickCreateEmployee()
     }
 
 }

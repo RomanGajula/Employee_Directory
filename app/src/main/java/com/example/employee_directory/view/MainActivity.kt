@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = employeeAdapter
         }
 
-        val callList: Call<RequestData> = RetrofitInstance.api.gettttEmployee()
+        val callList: Call<RequestData> = RetrofitInstance.api.getEmployee()
         callList.enqueue(object : Callback<RequestData> {
             override fun onFailure(call: Call<RequestData>, t: Throwable) {
                 println(t)
