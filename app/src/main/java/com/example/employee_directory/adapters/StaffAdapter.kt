@@ -1,15 +1,11 @@
 package com.example.employee_directory.adapters
 
 import android.content.Context
-import android.renderscript.ScriptGroup
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.employee_directory.R
 import com.example.employee_directory.databinding.ItemStaffBinding
 import com.example.employee_directory.db.DataList
-import com.example.employee_directory.model.Data
 
 class StaffAdapter() : RecyclerView.Adapter<StaffAdapter.MyViewHolder>() {
 

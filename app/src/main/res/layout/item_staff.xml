@@ -7,7 +7,7 @@
 
         <variable
             name="modelStaff"
-            type="com.example.employee_directory.model.Data" />
+            type="com.example.employee_directory.model.Employee" />
 
 <!--        <variable-->
 <!--            name="mainActivity"-->
