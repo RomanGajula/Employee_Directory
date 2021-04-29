@@ -13,7 +13,7 @@ object RetrofitInstance {
 
 
     var retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl("http://10.0.2.2:3000/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

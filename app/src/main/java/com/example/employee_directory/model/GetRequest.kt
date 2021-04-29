@@ -1,6 +1,6 @@
 package com.example.employee_directory.model
 
-class RequestData(
+class GetRequest(
     val data: List<Employee>,
     val status: String
 )

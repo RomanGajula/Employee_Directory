@@ -14,9 +14,15 @@ import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
 import com.example.employee_directory.databinding.ActivityAddEmployeeBinding
 import com.example.employee_directory.dialog.CancelDialog
+import com.example.employee_directory.model.Employee
+import com.example.employee_directory.model.PostRequest
+import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.AddEmployeeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.KoinComponent
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddEmployee : AppCompatActivity(), KoinComponent {
 
@@ -34,7 +40,9 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
                 )
         binding.apply {
             lifecycleOwner = this@AddEmployee
+
         }
+
     }
 
     fun clickCancel(view: View) {
@@ -56,7 +64,19 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
                 binding.addSalary.error = "Enter the employee's salary"
             }
             else -> {
-                addEmployeeViewModel.clickCreateEmployee()
+//                addEmployeeViewModel.clickCreateEmployee()
+                addEmployeeViewModel.createEmployee().enqueue(object : Callback<Employee> {
+                    override fun onFailure(call: Call<Employee>, t: Throwable) {
+                        println("------------>>>>>" + t)
+                    }
+
+                    override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
+                        println("-------------->>> response " + response)
+                        println("-------------->>> status " + response.body())
+                        Repository.employeesList.add(response.body()!!)
+                        println(Repository.employeesList)
+                    }
+                })
                 val intent = Intent(this@AddEmployee, MainActivity::class.java)
                 startActivity(intent)
             }

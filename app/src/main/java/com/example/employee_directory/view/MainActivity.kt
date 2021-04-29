@@ -13,17 +13,22 @@ import com.example.employee_directory.R
 import com.example.employee_directory.adapters.EmployeeAdapter
 import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityMainBinding
-import com.example.employee_directory.model.RequestData
+import com.example.employee_directory.model.Employee
+import com.example.employee_directory.model.GetRequest
 import com.example.employee_directory.onBoard.CustomIntro
 import com.example.employee_directory.repository.Repository
+import com.example.employee_directory.viewmodel.MainActivityViewModel
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import retrofit2.*
 
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), KoinComponent {
     var currentPage: Int = 0
     val repository = Repository()
     val employeeAdapter by lazy { EmployeeAdapter() }
+    val mainActivityViewModel: MainActivityViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +46,21 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = employeeAdapter
         }
 
-        val callList: Call<RequestData> = RetrofitInstance.api.getEmployee()
-        callList.enqueue(object : Callback<RequestData> {
-            override fun onFailure(call: Call<RequestData>, t: Throwable) {
+        val callList: Call<List<Employee>> = RetrofitInstance.api.getEmployee()
+        callList.enqueue(object : Callback<List<Employee>> {
+            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
                 println(t)
             }
 
-            override fun onResponse(call: Call<RequestData>, response: Response<RequestData>) {
-                val employee = response.body()?.data
+            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
+                val employee = response.body()
                 employee?.let { employeeAdapter.setData(it) }
+                println("---------->>>" + response)
+                println(Repository.employeesList)
             }
         })
+
+
 
         val thread = Thread(Runnable {
             run {
@@ -87,4 +96,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AddEmployee::class.java)
         startActivity(intent)
     }
+
+//    fun clickDeleteEmployee(view: View) {
+//        mainActivityViewModel.deleteEmployee()
+//    }
 }

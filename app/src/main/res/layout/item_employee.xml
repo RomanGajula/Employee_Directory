@@ -6,12 +6,12 @@
     <data>
 
         <variable
-            name="modelStaff"
+            name="modelEmployee"
             type="com.example.employee_directory.model.Employee" />
 
-<!--        <variable-->
-<!--            name="mainActivity"-->
-<!--            type="com.example.hotels.hotel.viewModel.ListHotelViewModel" />-->
+<!--                <variable-->
+<!--                    name="mainActivity"-->
+<!--                    type="com.example.hotels.hotel.viewModel.ListHotelViewModel" />-->
 
     </data>
 
@@ -63,7 +63,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/buttonDelete"
+                android:id="@+id/buttonChange"
                 android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="1dp"
@@ -73,25 +73,25 @@
                 android:text="Change"
                 android:textSize="9sp" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxWidth="10dp"
-                app:srcCompat="@android:drawable/ic_menu_delete" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/deleteButton"-->
+            <!--                android:layout_width="10dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:maxWidth="10dp"-->
+            <!--                app:srcCompat="@android:drawable/ic_menu_delete" />-->
 
-            <!--            <Button-->
-<!--                android:id="@+id/buttonUpdate"-->
-<!--                android:layout_width="80dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginStart="1dp"-->
-<!--                android:layout_marginTop="0dp"-->
-<!--                android:layout_marginEnd="0dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:maxWidth="80dp"-->
-<!--                android:text="Delete"-->
-<!--                android:textSize="9sp" />-->
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="1"
+                android:maxWidth="80dp"
+                android:text="Delete"
+                android:textSize="9sp" />
         </LinearLayout>
 
 
