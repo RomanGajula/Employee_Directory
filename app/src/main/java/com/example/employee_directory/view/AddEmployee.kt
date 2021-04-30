@@ -66,13 +66,16 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
                 binding.addSalary.error = "Enter the employee's salary"
             }
             else -> {
-                addEmployeeViewModel.createEmployee().enqueue(object : Callback<Employee> {
+//                addEmployeeViewModel.clickCreateEmployee()
+//                var res: Call<Employee> = addEmployeeViewModel.createEmployee() as Call<Employee>
+                addEmployeeViewModel.createEmployee(binding.addName.text.toString(), binding.addAge.text.toString(), binding.addSalary.text.toString()).enqueue(object : Callback<Employee> {
                     override fun onFailure(call: Call<Employee>, t: Throwable) {
                         println("------------>>>>>" + t)
                     }
 
                     override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
                         println(EmployeeAdapter.employeesList)
+//                            Repository.employeesList.add(response.body()!!)
                         EmployeeAdapter.employeesList.add(response.body()!!)
                         println(EmployeeAdapter.employeesList)
                     }

@@ -15,52 +15,26 @@ import org.koin.core.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.await
 
 class AddEmployeeViewModel : ViewModel(), KoinComponent {
     val repository: Repository by inject()
     val name = MutableLiveData("")
     val age = MutableLiveData("")
     val salary = MutableLiveData("")
+    lateinit var res: Call<Employee>
 
 
-    fun createEmployee() : Call<Employee> {
-//        viewModelScope.launch(Dispatchers.IO) {
-            return repository.addEmployee(
-                    Employee(
-                    null,
-                    name.value.toString(),
-                    salary.value.toString(),
-                    age.value.toString(),
-                    null
-            )
-            )
-//        }
-        Log.d("Message", name.value.toString())
-        Log.d("Message", age.value.toString())
-        Log.d("Message", salary.value.toString())
+    fun createEmployee(name: String, age: String, salary: String): Call<Employee> {
+        return repository.addEmployee(
+                Employee(
+                        null,
+                        name,
+                        salary,
+                        age,
+                        null
+                )
+        )
+        Log.d("Message", name)
     }
-
-//    suspend fun addEmployee() {
-//
-//            Employee(
-//                    null,
-//                    name.value.toString(),
-//                    salary.value.toString(),
-//                    age.value.toString(),
-//                    null
-//            )
-//    }
-
-
-//    fun clickCreateEmployee() {
-//        repository.addEmployee(
-//                Employee(
-//                        null,
-//                        name.value.toString(),
-//                        salary.value.toString(),
-//                        age.value.toString(),
-//                        null
-//                )
-//        )
-//    }
 }
