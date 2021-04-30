@@ -12,12 +12,14 @@ import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
+import com.example.employee_directory.adapters.EmployeeAdapter
 import com.example.employee_directory.databinding.ActivityAddEmployeeBinding
 import com.example.employee_directory.dialog.CancelDialog
 import com.example.employee_directory.model.Employee
 import com.example.employee_directory.model.PostRequest
 import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.AddEmployeeViewModel
+import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.KoinComponent
 import retrofit2.Call
@@ -65,18 +67,19 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
             }
             else -> {
 //                addEmployeeViewModel.clickCreateEmployee()
-                addEmployeeViewModel.createEmployee().enqueue(object : Callback<Employee> {
-                    override fun onFailure(call: Call<Employee>, t: Throwable) {
-                        println("------------>>>>>" + t)
-                    }
+//                var res: Call<Employee> = addEmployeeViewModel.createEmployee() as Call<Employee>
+                    addEmployeeViewModel.createEmployee().enqueue(object : Callback<Employee> {
+                        override fun onFailure(call: Call<Employee>, t: Throwable) {
+                            println("------------>>>>>" + t)
+                        }
 
-                    override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
-                        println("-------------->>> response " + response)
-                        println("-------------->>> status " + response.body())
-                        Repository.employeesList.add(response.body()!!)
-                        println(Repository.employeesList)
-                    }
-                })
+                        override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
+                            println(EmployeeAdapter.employeesList)
+//                            Repository.employeesList.add(response.body()!!)
+                            EmployeeAdapter.employeesList.add(response.body()!!)
+                            println(EmployeeAdapter.employeesList)
+                        }
+                    })
                 val intent = Intent(this@AddEmployee, MainActivity::class.java)
                 startActivity(intent)
             }

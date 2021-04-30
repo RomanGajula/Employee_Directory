@@ -18,7 +18,7 @@ interface Api {
 //    fun getData(): Call<Employee>
 
     @GET("employees")
-    fun getEmployee(): Call<List<Employee>>
+    fun getEmployee(): Call<MutableList<Employee>>
 
     @DELETE("employees/{id}")
     fun deleteEmployee(@Path("id") id: Int): Call<Void>

@@ -7,16 +7,10 @@
       "id": 1
     },
     {
-      "employee_age": "20",
-      "employee_name": "Rom",
-      "employee_salary": "33333",
+      "employee_age": "",
+      "employee_name": "2",
+      "employee_salary": "",
       "id": 2
-    },
-    {
-      "employee_age": "20",
-      "employee_name": "Rom",
-      "employee_salary": "33333",
-      "id": 3
     }
   ]
 }

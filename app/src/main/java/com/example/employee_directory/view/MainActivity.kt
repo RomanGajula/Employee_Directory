@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -46,17 +47,16 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             recyclerView.adapter = employeeAdapter
         }
 
-        val callList: Call<List<Employee>> = RetrofitInstance.api.getEmployee()
-        callList.enqueue(object : Callback<List<Employee>> {
-            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
+        val callList: Call<MutableList<Employee>> = RetrofitInstance.api.getEmployee()
+        callList.enqueue(object : Callback<MutableList<Employee>> {
+            override fun onFailure(call: Call<MutableList<Employee>>, t: Throwable) {
                 println(t)
             }
 
-            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
+            override fun onResponse(call: Call<MutableList<Employee>>, response: Response<MutableList<Employee>>) {
                 val employee = response.body()
                 employee?.let { employeeAdapter.setData(it) }
-                println("---------->>>" + response)
-                println(Repository.employeesList)
+                println()
             }
         })
 

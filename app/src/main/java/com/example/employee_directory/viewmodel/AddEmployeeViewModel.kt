@@ -9,9 +9,12 @@ import com.example.employee_directory.model.PostRequest
 import com.example.employee_directory.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddEmployeeViewModel : ViewModel(), KoinComponent {
     val repository: Repository by inject()
@@ -21,16 +24,32 @@ class AddEmployeeViewModel : ViewModel(), KoinComponent {
 
 
     fun createEmployee() : Call<Employee> {
-        return repository.addEmployee(
-                Employee(
-                        null,
-                        "Rom",
-                        "33333",
-                        "20",
-                        null
-                )
-        )
+//        viewModelScope.launch(Dispatchers.IO) {
+            return repository.addEmployee(
+                    Employee(
+                    null,
+                    name.value.toString(),
+                    salary.value.toString(),
+                    age.value.toString(),
+                    null
+            )
+            )
+//        }
+        Log.d("Message", name.value.toString())
+        Log.d("Message", age.value.toString())
+        Log.d("Message", salary.value.toString())
     }
+
+//    suspend fun addEmployee() {
+//
+//            Employee(
+//                    null,
+//                    name.value.toString(),
+//                    salary.value.toString(),
+//                    age.value.toString(),
+//                    null
+//            )
+//    }
 
 
 //    fun clickCreateEmployee() {

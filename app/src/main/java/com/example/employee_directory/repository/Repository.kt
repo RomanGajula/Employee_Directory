@@ -13,9 +13,9 @@ import retrofit2.Response
 
 class Repository : KoinComponent {
 
-    companion object{
-        var employeesList: MutableList<Employee> = arrayListOf()
-    }
+//    companion object{
+//        var employeesList: MutableList<Employee> = arrayListOf()
+//    }
 
 
     private val dao: DaoEmployee by inject()
