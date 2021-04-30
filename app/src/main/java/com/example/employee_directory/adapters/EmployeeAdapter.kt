@@ -21,7 +21,6 @@ import retrofit2.Response
 
 class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), KoinComponent {
 
-    //    private lateinit var dataList: MutableList<Data>
     val mainActivityViewModel: MainActivityViewModel by inject()
     val addEmployeeViewModel: AddEmployeeViewModel by inject()
 
@@ -57,10 +56,8 @@ class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), 
 
                     @RequiresApi(Build.VERSION_CODES.N)
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        println(EmployeeAdapter.employeesList)
                         EmployeeAdapter.employeesList.remove(it)
                         setData(EmployeeAdapter.employeesList)
-                        println(EmployeeAdapter.employeesList)
                     }
                 })
             }
@@ -75,8 +72,4 @@ class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), 
         EmployeeAdapter.employeesList = employeeList
         notifyDataSetChanged()
     }
-
-//    fun addEmployee(employee: Employee) {
-//        addEmployeeViewModel.
-//    }
 }

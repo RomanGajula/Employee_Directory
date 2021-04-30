@@ -96,8 +96,4 @@ class MainActivity : AppCompatActivity(), KoinComponent {
         val intent = Intent(this, AddEmployee::class.java)
         startActivity(intent)
     }
-
-//    fun clickDeleteEmployee(view: View) {
-//        mainActivityViewModel.deleteEmployee()
-//    }
 }

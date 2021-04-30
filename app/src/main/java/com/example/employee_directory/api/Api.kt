@@ -13,10 +13,6 @@ interface Api {
             @Body employee: Employee
     ): Call<Employee>
 
-//    @Headers("Accept: application/json")
-//    @GET("/api/v1/employees")
-//    fun getData(): Call<Employee>
-
     @GET("employees")
     fun getEmployee(): Call<MutableList<Employee>>
 
@@ -24,5 +20,4 @@ interface Api {
     fun deleteEmployee(@Path("id") id: Int): Call<Void>
 
     fun onItemDeleted(employee: Employee, position: Int)
-//    /api/v1/employees
 }

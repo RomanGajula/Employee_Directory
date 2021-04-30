@@ -66,20 +66,17 @@ class AddEmployee : AppCompatActivity(), KoinComponent {
                 binding.addSalary.error = "Enter the employee's salary"
             }
             else -> {
-//                addEmployeeViewModel.clickCreateEmployee()
-//                var res: Call<Employee> = addEmployeeViewModel.createEmployee() as Call<Employee>
-                    addEmployeeViewModel.createEmployee().enqueue(object : Callback<Employee> {
-                        override fun onFailure(call: Call<Employee>, t: Throwable) {
-                            println("------------>>>>>" + t)
-                        }
+                addEmployeeViewModel.createEmployee().enqueue(object : Callback<Employee> {
+                    override fun onFailure(call: Call<Employee>, t: Throwable) {
+                        println("------------>>>>>" + t)
+                    }
 
-                        override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
-                            println(EmployeeAdapter.employeesList)
-//                            Repository.employeesList.add(response.body()!!)
-                            EmployeeAdapter.employeesList.add(response.body()!!)
-                            println(EmployeeAdapter.employeesList)
-                        }
-                    })
+                    override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
+                        println(EmployeeAdapter.employeesList)
+                        EmployeeAdapter.employeesList.add(response.body()!!)
+                        println(EmployeeAdapter.employeesList)
+                    }
+                })
                 val intent = Intent(this@AddEmployee, MainActivity::class.java)
                 startActivity(intent)
             }
