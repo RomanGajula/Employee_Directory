@@ -2,12 +2,6 @@
   "employees": [
     {
       "employee_age": "20",
-      "employee_name": "Rom",
-      "employee_salary": "33333",
-      "id": 1
-    },
-    {
-      "employee_age": "20",
       "employee_name": "Tima",
       "employee_salary": "50000",
       "id": 5
