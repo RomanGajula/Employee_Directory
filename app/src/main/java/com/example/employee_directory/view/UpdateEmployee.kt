@@ -1,5 +1,6 @@
 package com.example.employee_directory.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -42,6 +43,27 @@ class UpdateEmployee : AppCompatActivity(), KoinComponent {
                 }
             }
         })
+
+        binding.buttonUpdate.setOnClickListener {
+            updateEmployeeViewModel.updateEmployee(
+                    idToUpdate!!.toInt(),
+                    Employee(
+                            idToUpdate.toString(),
+                            binding.updateName.text.toString(),
+                            binding.updateSalary.text.toString(),
+                            binding.updateAge.text.toString(),
+                            null)
+            ).enqueue(object : Callback<Employee> {
+                override fun onFailure(call: Call<Employee>, t: Throwable) {
+                    println(t)
+                }
+
+                override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
+                    val intent = Intent(this@UpdateEmployee, MainActivity::class.java)
+                    startActivity(intent);
+                }
+            })
+        }
 
         binding.apply {
             lifecycleOwner = this@UpdateEmployee

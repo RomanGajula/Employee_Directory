@@ -83,14 +83,13 @@
             android:layout_marginTop="150dp"
             android:layout_marginRight="100dp"
             android:enabled="true"
-            android:onClick="clickCreateEmployee"
             android:text="Update"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/updateName" />
 
         <Button
-            android:id="@+id/buttonСancelCreate"
+            android:id="@+id/buttonСancelUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"

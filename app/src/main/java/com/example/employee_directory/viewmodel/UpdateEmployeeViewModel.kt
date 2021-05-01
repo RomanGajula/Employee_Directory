@@ -18,4 +18,8 @@ class UpdateEmployeeViewModel : ViewModel(), KoinComponent {
     fun getEmployeeById(id: Int): Call<List<Employee>> {
         return repository.getEmployeeById(id)
     }
+
+    fun updateEmployee(id: Int, employee: Employee): Call<Employee> {
+        return repository.updateEmployee(id, employee)
+    }
 }
