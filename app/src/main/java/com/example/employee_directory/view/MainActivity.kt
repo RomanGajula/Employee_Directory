@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.update -> Toast.makeText(this, "Select Update", Toast.LENGTH_SHORT).show()
+            R.id.update -> clickUpdateActivity()
             R.id.add -> clickAddEmployee()
         }
         return super.onOptionsItemSelected(item)
@@ -110,6 +110,25 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     fun clickAddEmployee() {
         val intent = Intent(this, AddEmployee::class.java)
         startActivity(intent)
+    }
+
+    fun clickUpdateActivity() {
+        val callList: Call<MutableList<Employee>> = RetrofitInstance.api.getEmployee()
+        callList.enqueue(object : Callback<MutableList<Employee>> {
+            override fun onFailure(call: Call<MutableList<Employee>>, t: Throwable) {
+                println(t)
+            }
+
+            @RequiresApi(Build.VERSION_CODES.R)
+            override fun onResponse(call: Call<MutableList<Employee>>, response: Response<MutableList<Employee>>) {
+                val employee = response.body()
+                employee?.let { employeeAdapter.setData(it) }
+                Toast.makeText(applicationContext, "List update!", Toast.LENGTH_LONG).show()
+                if (employee!!.isEmpty()) {
+                    Toast.makeText(applicationContext, "No data available!", Toast.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 
     fun hasConnection(context: Context): Boolean {
