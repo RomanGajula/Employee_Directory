@@ -1,10 +1,13 @@
 package com.example.employee_directory.view
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,7 +22,9 @@ import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.MainActivityViewModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 @Suppress("DEPRECATION")
@@ -73,6 +78,12 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             }
         })
         thread.start()
+
+        if (hasConnection(this)) {
+            binding.message.visibility = View.INVISIBLE
+        } else {
+            binding.message.visibility = View.VISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -91,5 +102,19 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     fun clickAddEmployee() {
         val intent = Intent(this, AddEmployee::class.java)
         startActivity(intent)
+    }
+
+    fun hasConnection(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+        if (wifiInfo != null && wifiInfo.isConnected) {
+            return true
+        }
+        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+        if (wifiInfo != null && wifiInfo.isConnected) {
+            return true
+        }
+        wifiInfo = cm.activeNetworkInfo
+        return wifiInfo != null && wifiInfo.isConnected
     }
 }
