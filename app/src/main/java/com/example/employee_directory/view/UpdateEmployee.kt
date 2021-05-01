@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
+import com.example.employee_directory.adapters.EmployeeAdapter
 import com.example.employee_directory.databinding.ActivityUpdateEmployeeBinding
 import com.example.employee_directory.dialog.CancelDialog
 import com.example.employee_directory.model.Employee
@@ -45,24 +46,40 @@ class UpdateEmployee : AppCompatActivity(), KoinComponent {
         })
 
         binding.buttonUpdate.setOnClickListener {
-            updateEmployeeViewModel.updateEmployee(
-                    idToUpdate!!.toInt(),
-                    Employee(
-                            idToUpdate.toString(),
-                            binding.updateName.text.toString(),
-                            binding.updateSalary.text.toString(),
-                            binding.updateAge.text.toString(),
-                            null)
-            ).enqueue(object : Callback<Employee> {
-                override fun onFailure(call: Call<Employee>, t: Throwable) {
-                    println(t)
+            when {
+                binding.updateName.text.isEmpty() -> {
+                    binding.updateName.error = "Enter the name of the staff"
                 }
+                binding.updateAge.text.isEmpty() -> {
+                    binding.updateAge.error = "Enter the employee's age"
+                }
+                binding.updateAge.text.length > 3 -> {
+                    binding.updateAge.error = "Enter your real age"
+                }
+                binding.updateSalary.text.isEmpty() -> {
+                    binding.updateSalary.error = "Enter the employee's salary"
+                }
+                else -> {
+                    updateEmployeeViewModel.updateEmployee(
+                            idToUpdate!!.toInt(),
+                            Employee(
+                                    idToUpdate.toString(),
+                                    binding.updateName.text.toString(),
+                                    binding.updateSalary.text.toString(),
+                                    binding.updateAge.text.toString(),
+                                    null)
+                    ).enqueue(object : Callback<Employee> {
+                        override fun onFailure(call: Call<Employee>, t: Throwable) {
+                            println(t)
+                        }
 
-                override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
-                    val intent = Intent(this@UpdateEmployee, MainActivity::class.java)
-                    startActivity(intent);
+                        override fun onResponse(call: Call<Employee>, response: Response<Employee>) {
+                            val intent = Intent(this@UpdateEmployee, MainActivity::class.java)
+                            startActivity(intent);
+                        }
+                    })
                 }
-            })
+            }
         }
 
         binding.apply {

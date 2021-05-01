@@ -3,12 +3,14 @@ package com.example.employee_directory.view
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,26 +45,6 @@ class MainActivity : AppCompatActivity(), KoinComponent {
                         R.layout.activity_main
                 )
 
-        binding.apply {
-            recyclerView.setHasFixedSize(true)
-            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            recyclerView.adapter = employeeAdapter
-        }
-
-        val callList: Call<MutableList<Employee>> = RetrofitInstance.api.getEmployee()
-        callList.enqueue(object : Callback<MutableList<Employee>> {
-            override fun onFailure(call: Call<MutableList<Employee>>, t: Throwable) {
-                println(t)
-            }
-
-            override fun onResponse(call: Call<MutableList<Employee>>, response: Response<MutableList<Employee>>) {
-                val employee = response.body()
-                employee?.let { employeeAdapter.setData(it) }
-                println()
-            }
-        })
-
-
         val thread = Thread(Runnable {
             run {
                 val getPrefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
@@ -78,6 +60,32 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             }
         })
         thread.start()
+
+        binding.apply {
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+            recyclerView.adapter = employeeAdapter
+        }
+
+        val callList: Call<MutableList<Employee>> = RetrofitInstance.api.getEmployee()
+        callList.enqueue(object : Callback<MutableList<Employee>> {
+            override fun onFailure(call: Call<MutableList<Employee>>, t: Throwable) {
+                println(t)
+            }
+
+            @RequiresApi(Build.VERSION_CODES.R)
+            override fun onResponse(call: Call<MutableList<Employee>>, response: Response<MutableList<Employee>>) {
+                val employee = response.body()
+                employee?.let { employeeAdapter.setData(it) }
+                if (EmployeeAdapter.employeesList.isNotEmpty()) {
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+                if (employee!!.isEmpty()) {
+                    Toast.makeText(applicationContext, "No data available!", Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+            }
+        })
 
         if (hasConnection(this)) {
             binding.message.visibility = View.INVISIBLE
