@@ -11,6 +11,14 @@ class Repository : KoinComponent {
         return RetrofitInstance.api.addEmployee(employee)
     }
 
+    fun updateEmployee(id: Int, employee: Employee): Call<Employee> {
+        return RetrofitInstance.api.updateEmployee(id, employee)
+    }
+
+    fun getEmployeeById(id: Int): Call<List<Employee>> {
+        return RetrofitInstance.api.getEmployeeById(id)
+    }
+
     fun deleteEmployee(id: Int): Call<Void> {
         return RetrofitInstance.api.deleteEmployee(id)
     }

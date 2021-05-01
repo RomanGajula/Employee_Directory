@@ -16,6 +16,12 @@ interface Api {
     @GET("employees")
     fun getEmployee(): Call<MutableList<Employee>>
 
+    @GET("employees")
+    fun getEmployeeById(@Query("id") id: Int): Call<List<Employee>>
+
     @DELETE("employees/{id}")
     fun deleteEmployee(@Path("id") id: Int): Call<Void>
+
+    @PUT("employees/{id}")
+    fun updateEmployee(@Path("id") id: Int, @Body employee: Employee): Call<Employee>
 }

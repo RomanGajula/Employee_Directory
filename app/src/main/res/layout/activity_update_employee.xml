@@ -6,9 +6,9 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="addViewModel"-->
-<!--            type="com.example.employee_directory.viewmodel.AddEmployeeViewModel" />-->
+        <variable
+            name="updateEmployeeViewModel"
+            type="com.example.employee_directory.viewmodel.UpdateEmployeeViewModel" />
 
     </data>
 
@@ -18,7 +18,7 @@
         tools:context=".view.UpdateEmployee">
 
         <TextView
-            android:id="@+id/titleAddEmployee"
+            android:id="@+id/titleUpdateEmployee"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="59dp"
@@ -32,7 +32,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/addName"
+            android:id="@+id/updateName"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="54dp"
@@ -40,27 +40,29 @@
             android:layout_marginEnd="54dp"
             android:ems="10"
             android:hint="Update name"
+            android:text=""
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleAddEmployee"
+            app:layout_constraintTop_toTopOf="@+id/titleUpdateEmployee"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/addAge"
+            android:id="@+id/updateAge"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="54dp"
             android:layout_marginEnd="54dp"
             android:ems="10"
             android:hint="Update age"
+            android:text=""
             android:inputType="number|textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/addSalary"
+            app:layout_constraintBottom_toTopOf="@+id/updateSalary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/addSalary"
+            android:id="@+id/updateSalary"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="54dp"
@@ -68,23 +70,24 @@
             android:layout_marginBottom="30dp"
             android:ems="10"
             android:hint="Update salary"
+            android:text=""
             android:inputType="number|textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCreate"
+            app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/buttonCreate"
+            android:id="@+id/buttonUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:layout_marginRight="100dp"
             android:enabled="true"
             android:onClick="clickCreateEmployee"
-            android:text="Create"
+            android:text="Update"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/addName" />
+            app:layout_constraintTop_toTopOf="@+id/updateName" />
 
         <Button
             android:id="@+id/buttonСancelCreate"
@@ -97,7 +100,7 @@
             android:text="Cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/addName" />
+            app:layout_constraintTop_toTopOf="@+id/updateName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
