@@ -1,7 +1,6 @@
 package com.example.employee_directory.adapters
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +8,8 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.employee_directory.databinding.ItemEmployeeBinding
 import com.example.employee_directory.model.Employee
-import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.AddEmployeeViewModel
 import com.example.employee_directory.viewmodel.MainActivityViewModel
-import okhttp3.internal.notify
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Call
@@ -28,8 +25,6 @@ class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), 
         var employeesList: MutableList<Employee> = arrayListOf()
     }
 
-    private lateinit var context: Context
-
     inner class MyViewHolder(val binding: ItemEmployeeBinding) :
             RecyclerView.ViewHolder(binding.root) {
     }
@@ -41,7 +36,6 @@ class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), 
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        holder.bind()
         val employeeList = EmployeeAdapter.employeesList[position]
         holder.binding.nameUser.text = employeeList.employeeName
         holder.binding.age.text = "age: ${employeeList.employeeAge}"
@@ -51,7 +45,7 @@ class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), 
             employeeList.let {
                 addEmployeeViewModel.repository.deleteEmployee(it.id!!.toInt()).enqueue(object : Callback<Void> {
                     override fun onFailure(call: Call<Void>, t: Throwable) {
-                        println("------------>>>>>" + t)
+                        println(t)
                     }
 
                     @RequiresApi(Build.VERSION_CODES.N)

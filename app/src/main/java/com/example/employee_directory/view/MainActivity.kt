@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -15,7 +14,6 @@ import com.example.employee_directory.adapters.EmployeeAdapter
 import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityMainBinding
 import com.example.employee_directory.model.Employee
-import com.example.employee_directory.model.GetRequest
 import com.example.employee_directory.onBoard.CustomIntro
 import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.MainActivityViewModel
@@ -26,7 +24,6 @@ import retrofit2.*
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), KoinComponent {
-    var currentPage: Int = 0
     val repository = Repository()
     val employeeAdapter by lazy { EmployeeAdapter() }
     val mainActivityViewModel: MainActivityViewModel by inject()
@@ -36,10 +33,10 @@ class MainActivity : AppCompatActivity(), KoinComponent {
         setContentView(R.layout.activity_main)
 
         val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(
-                this,
-                R.layout.activity_main
-            )
+                DataBindingUtil.setContentView(
+                        this,
+                        R.layout.activity_main
+                )
 
         binding.apply {
             recyclerView.setHasFixedSize(true)
@@ -59,7 +56,6 @@ class MainActivity : AppCompatActivity(), KoinComponent {
                 println()
             }
         })
-
 
 
         val thread = Thread(Runnable {

@@ -18,6 +18,4 @@ interface Api {
 
     @DELETE("employees/{id}")
     fun deleteEmployee(@Path("id") id: Int): Call<Void>
-
-    fun onItemDeleted(employee: Employee, position: Int)
 }

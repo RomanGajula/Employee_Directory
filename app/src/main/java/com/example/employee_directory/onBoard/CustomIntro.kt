@@ -9,8 +9,7 @@ import com.github.paolorotolo.appintro.AppIntro2
 
 class CustomIntro : AppIntro2() {
     override fun init(savedInstanceState: Bundle?) {
-
-        addSlide(SampleSlide.newInstance(R.layout.intro_1)) //
+        addSlide(SampleSlide.newInstance(R.layout.intro_1))
         addSlide(SampleSlide.newInstance(R.layout.intro_2))
         addSlide(SampleSlide.newInstance(R.layout.intro_3))
     }
@@ -22,7 +21,7 @@ class CustomIntro : AppIntro2() {
     }
 
     override fun onNextPressed() {
-        // Do something here
+
     }
 
     override fun onDonePressed() {
@@ -30,6 +29,6 @@ class CustomIntro : AppIntro2() {
     }
 
     override fun onSlideChanged() {
-        // Do something here
+
     }
 }

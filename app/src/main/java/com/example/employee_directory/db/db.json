@@ -7,16 +7,22 @@
       "id": 1
     },
     {
-      "employee_age": "",
-      "employee_name": "2",
-      "employee_salary": "",
-      "id": 2
-    },
-    {
       "employee_age": "20",
       "employee_name": "Tima",
       "employee_salary": "50000",
       "id": 5
+    },
+    {
+      "employee_age": "24",
+      "employee_name": "Andrey",
+      "employee_salary": "9500",
+      "id": 6
+    },
+    {
+      "employee_age": "33",
+      "employee_name": "Trofim",
+      "employee_salary": "18000",
+      "id": 7
     }
   ]
 }
