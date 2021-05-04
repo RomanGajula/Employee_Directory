@@ -1,6 +1,5 @@
 package com.example.employee_directory.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.employee_directory.model.Employee
 import com.example.employee_directory.repository.Repository
@@ -21,6 +20,5 @@ class AddEmployeeViewModel : ViewModel(), KoinComponent {
                         null
                 )
         )
-        Log.d("Message", name)
     }
 }
