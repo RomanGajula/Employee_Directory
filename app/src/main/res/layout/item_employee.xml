@@ -15,80 +15,83 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
         android:background="@drawable/item_background">
 
         <LinearLayout
-            android:layout_width="220dp"
-            android:layout_height="65dp"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
             android:layout_marginStart="5dp"
-            >
-
-            <TextView
-                android:id="@+id/age"
-                android:layout_width="54dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="sans-serif"
-                android:text=""
-                android:textColor="#918F8F"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/salary"
-                android:layout_width="145dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="sans-serif"
-                android:text=""
-                android:textColor="#918F8F"
-                android:textSize="12sp" />
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/nameUser"
-                android:layout_width="170dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="-203dp"
-                android:layout_marginTop="10dp"
                 android:text=""
+                android:maxWidth="200dp"
+                android:layout_marginBottom="5dp"
                 android:textColor="#434242"
                 android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text=""
+                    android:maxWidth="50dp"
+                    android:gravity="center"
+                    android:textColor="#918F8F"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/salary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text=""
+                    android:maxWidth="180dp"
+                    android:textColor="#918F8F"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="170dp"
-            android:layout_height="65dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_marginEnd="5dp"
-            android:gravity="center">
+            android:gravity="right|center">
 
             <Button
                 android:id="@+id/buttonChange"
-                android:layout_width="15dp"
+                android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginTop="3dp"
-                android:layout_weight="1"
-                android:maxWidth="30dp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_marginRight="5dp"
+                android:maxWidth="10dp"
                 android:text="Change"
                 android:textSize="9sp" />
 
             <Button
                 android:id="@+id/buttonDelete"
-                android:layout_width="15dp"
+                android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="1"
                 android:maxWidth="80dp"
                 android:text="Delete"
                 android:textSize="9sp" />
-        </LinearLayout>
 
+        </LinearLayout>
 
     </LinearLayout>
 </layout>
