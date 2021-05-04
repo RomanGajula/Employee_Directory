@@ -20,7 +20,6 @@ import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.databinding.ActivityMainBinding
 import com.example.employee_directory.model.Employee
 import com.example.employee_directory.onBoard.CustomIntro
-import com.example.employee_directory.repository.Repository
 import com.example.employee_directory.viewmodel.MainActivityViewModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject

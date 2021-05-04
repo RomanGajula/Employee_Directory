@@ -1,7 +1,6 @@
 package com.example.employee_directory.api
 
 import com.example.employee_directory.utils.Constants.Companion.BASE_URL
-import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

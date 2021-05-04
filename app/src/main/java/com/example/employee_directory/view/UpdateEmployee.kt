@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.example.employee_directory.R
-import com.example.employee_directory.adapters.EmployeeAdapter
 import com.example.employee_directory.databinding.ActivityUpdateEmployeeBinding
 import com.example.employee_directory.dialog.CancelDialog
 import com.example.employee_directory.model.Employee

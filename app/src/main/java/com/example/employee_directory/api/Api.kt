@@ -1,8 +1,6 @@
 package com.example.employee_directory.api
 
 import com.example.employee_directory.model.Employee
-import com.example.employee_directory.model.GetRequest
-import com.example.employee_directory.model.PostRequest
 import retrofit2.Call
 import retrofit2.http.*
 

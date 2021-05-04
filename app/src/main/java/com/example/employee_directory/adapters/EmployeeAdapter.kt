@@ -23,8 +23,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EmployeeAdapter() : RecyclerView.Adapter<EmployeeAdapter.MyViewHolder>(), KoinComponent {
-
-    val mainActivityViewModel: MainActivityViewModel by inject()
     val addEmployeeViewModel: AddEmployeeViewModel by inject()
 
     companion object {
