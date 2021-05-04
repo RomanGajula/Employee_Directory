@@ -17,6 +17,9 @@ interface Api {
     fun getEmployee(): Call<MutableList<Employee>>
 
     @GET("employees")
+    fun getEmployeeSearch(@Query("employee_name") employee_name: String): Call<List<Employee>>
+
+    @GET("employees")
     fun getEmployeeById(@Query("id") id: Int): Call<List<Employee>>
 
     @DELETE("employees/{id}")

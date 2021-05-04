@@ -4,11 +4,22 @@ import retrofit2.Call
 import retrofit2.Response
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.employee_directory.adapters.EmployeeAdapter
+import com.example.employee_directory.api.RetrofitInstance
 import com.example.employee_directory.model.Employee
 import com.example.employee_directory.repository.Repository
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class MainActivityViewModel(var repository: Repository) : ViewModel() {
-    var myResponse: MutableLiveData<Response<Employee>> = MutableLiveData()
-    var getResponse: MutableLiveData<Call<Employee>> = MutableLiveData()
+class MainActivityViewModel() : ViewModel(), KoinComponent {
+    val repository: Repository by inject()
+
+    fun getEmployee(): Call<MutableList<Employee>> {
+        return repository.getEmployee()
+    }
+
+    fun getEmployeeSearch(employee_name: String): Call<List<Employee>> {
+        return repository.getEmployeeSearch(employee_name)
+    }
 
 }

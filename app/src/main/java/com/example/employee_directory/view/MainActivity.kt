@@ -27,11 +27,13 @@ import org.koin.core.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), KoinComponent {
-    val repository = Repository()
     val employeeAdapter by lazy { EmployeeAdapter() }
     val mainActivityViewModel: MainActivityViewModel by inject()
 
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             recyclerView.adapter = employeeAdapter
         }
 
-        val callList: Call<MutableList<Employee>> = RetrofitInstance.api.getEmployee()
+        val callList: Call<MutableList<Employee>> = mainActivityViewModel.getEmployee()
         callList.enqueue(object : Callback<MutableList<Employee>> {
             override fun onFailure(call: Call<MutableList<Employee>>, t: Throwable) {
                 println(t)
@@ -96,6 +98,42 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.app_bar, menu)
+        val searchManeger = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val search = menu?.findItem(R.id.search)?.actionView as SearchView
+
+        search.setSearchableInfo(searchManeger.getSearchableInfo(componentName))
+        search.queryHint = "Enter name employee"
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(qString: String): Boolean {
+                if (qString.length > 2) {
+                    getEmployeeSearch(qString)
+                }
+                return false
+            }
+
+            override fun onQueryTextSubmit(qString: String): Boolean {
+                getEmployeeSearch(qString)
+                return false
+            }
+        })
+
+        search.setOnCloseListener {
+            val callList: Call<MutableList<Employee>> = RetrofitInstance.api.getEmployee()
+
+            callList.enqueue(object : Callback<MutableList<Employee>> {
+                override fun onFailure(call: Call<MutableList<Employee>>, t: Throwable) {
+                    println(t)
+                }
+
+                @RequiresApi(Build.VERSION_CODES.R)
+                override fun onResponse(call: Call<MutableList<Employee>>, response: Response<MutableList<Employee>>) {
+                    val employee = response.body()
+                    employee?.let { employeeAdapter.setData(it) }
+                }
+            })
+            false
+        }
+
         return true
     }
 
@@ -126,6 +164,21 @@ class MainActivity : AppCompatActivity(), KoinComponent {
                 Toast.makeText(applicationContext, "List update!", Toast.LENGTH_LONG).show()
                 if (employee!!.isEmpty()) {
                     Toast.makeText(applicationContext, "No data available!", Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+    }
+
+    fun getEmployeeSearch(string: String) {
+        mainActivityViewModel.getEmployeeSearch(string).enqueue(object : Callback<List<Employee>> {
+            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
+                println(t)
+            }
+
+            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
+                response.body()?.forEach {
+                    val employee = response.body()
+                    employee?.let { employeeAdapter.setData(it.toMutableList()) }
                 }
             }
         })

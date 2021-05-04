@@ -3,7 +3,7 @@
     {
       "employee_age": "25",
       "employee_name": "Jon",
-      "employee_salary": "8900",
+      "employee_salary": "8800",
       "id": 1
     },
     {
@@ -41,6 +41,18 @@
       "employee_name": "Mihai",
       "employee_salary": "13500",
       "id": 10
+    },
+    {
+      "employee_age": "23",
+      "employee_name": "Roman",
+      "employee_salary": "7200",
+      "id": 11
+    },
+    {
+      "employee_age": "28",
+      "employee_name": "Roman",
+      "employee_salary": "15000",
+      "id": 12
     }
   ]
 }

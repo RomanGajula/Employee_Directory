@@ -10,6 +10,6 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel { AddEmployeeViewModel() }
     viewModel { UpdateEmployeeViewModel() }
-    viewModel { MainActivityViewModel(Repository()) }
+    viewModel { MainActivityViewModel() }
     single { Repository() }
 }
